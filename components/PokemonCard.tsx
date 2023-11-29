@@ -1,19 +1,25 @@
 import React from "react";
-import { Badge, Box, Text } from "@gluestack-ui/themed";
+import { Box, Text } from "@gluestack-ui/themed";
 import { Image } from "@gluestack-ui/themed";
 import { Pokemon } from "../interfaces/Pokemon";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import PokemonTypes from "./PokemonTypes";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const pokemonImageBaseURL =
 	"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
 export default function PokemonCard(pokemon: Pokemon) {
 	const formattedNumber = ("00" + pokemon.id).slice(-3);
+	const navigation =
+		useNavigation<NativeStackNavigationProp<ParamListBase>>();
 	return (
 		<TouchableOpacity
 			onPress={() => {
-				console.log("Pressed");
+				// On click, navigate to the PokemonDetails screen
+				// and pass the Pokemon object as a parameter
+				navigation.navigate("PokemonDetails", { pokemon });
 			}}>
 			<Box padding={10}>
 				<Box
