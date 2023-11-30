@@ -13,7 +13,6 @@ export default function PokemonTypes(pokemon: Pokemon) {
 			const data = await res.json();
 			const types = data.types.map((type: any) => type.type.name);
 			setPokemonTypes(types);
-			//console.log(pokemonTypes);
 		};
 		useEffect(() => {
 			fetchPokemonTypes();
@@ -25,7 +24,6 @@ export default function PokemonTypes(pokemon: Pokemon) {
 	return (
 		<Box style={{ flexDirection: "row" }}>
 			{pokemonTypes.map((type, index) => (
-				//console.log(type),
 				<Badge
 					style={[
 						styles.typeBadge,
