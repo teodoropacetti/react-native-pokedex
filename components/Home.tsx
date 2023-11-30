@@ -15,7 +15,6 @@ export default function Home() {
 			const res = await fetch(pokemonURL);
 			const data = await res.json();
 			setPokemons(data.results);
-			//console.log(pokemons);
 		};
 		useEffect(() => {
 			fetchPokemons();

@@ -17,9 +17,6 @@ export default function PokemonCard(pokemon: Pokemon) {
 	return (
 		<TouchableOpacity
 			onPress={() => {
-				// On click, navigate to the PokemonDetails screen
-				// and pass the Pokemon object as a parameter
-				//console.log(pokemon.url);
 				navigation.navigate("PokemonDetails", { pokemon });
 			}}>
 			<Box padding={10}>

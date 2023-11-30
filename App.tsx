@@ -6,8 +6,6 @@ import PokemonDetails from "./components/PokemonDetails";
 
 const Stack = createNativeStackNavigator();
 
-const pokemonURL = "https://pokeapi.co/api/v2/pokemon?limit=5&offset=0";
-
 export default function App() {
 	return (
 		<NavigationContainer>
