@@ -13,9 +13,7 @@ import PokemonBaseInfo from "./PokemonBaseInfo";
 import PokemonStats from "./PokemonStats";
 import PokemonFrontSprite from "./PokemonFrontSprite";
 import { Button } from "react-native";
-import { SceneMap, TabView } from "react-native-tab-view";
 import React from "react";
-import { Dimensions } from "react-native";
 import PokemonEvolutions from "./PokemonEvolutions";
 
 const pokemonImageBaseURL =
