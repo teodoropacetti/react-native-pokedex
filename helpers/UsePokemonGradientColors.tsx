@@ -17,9 +17,9 @@ const usePokemonGradientColors = (pokemonData) => {
 		if (types.length === 1) {
 			const baseColor = typeColors[types[0]] || "#000000";
 			// Adjust saturation for the first color
-			const color1 = adjustSaturation(baseColor, 0.6);
+			const color1 = adjustSaturation(baseColor, 0.9);
 			// Adjust saturation for the second color
-			const color2 = adjustSaturation(baseColor, 0.2);
+			const color2 = adjustSaturation(baseColor, 0.9);
 
 			colors = [color1, color2];
 		} else {

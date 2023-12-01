@@ -27,4 +27,9 @@ export const styles = StyleSheet.create({
 		fontSize: 40,
 		paddingTop: 20,
 	},
+	textStyle: {
+		fontSize: 20,
+		paddingVertical: 10,
+		color: "white",
+	},
 });

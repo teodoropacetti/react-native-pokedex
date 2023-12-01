@@ -9,6 +9,9 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "../constants/Styles";
 import usePokemonGradientColors from "../helpers/UsePokemonGradientColors";
+import PokemonBaseInfo from "./PokemonBaseInfo";
+import PokemonStats from "./PokemonStats";
+import PokemonFrontSprite from "./PokemonFrontSprite";
 
 const pokemonImageBaseURL =
 	"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
@@ -55,119 +58,28 @@ export default function PokemonDetails() {
 						</Heading>
 
 						{/* Display pokemon's image */}
-						<Image
-							source={{
-								uri:
-									pokemonImageBaseURL +
-									basicPokemonInfo["id"] +
-									".png",
-							}}
-							alt={basicPokemonInfo["name"]}
-							width={250}
-							height={250}
-						/>
+						<PokemonFrontSprite {...basicPokemonInfo} />
 						<Box
 							style={{
 								flexDirection: "row",
+								paddingVertical: 10,
 							}}>
 							<PokemonTypes {...basicPokemonInfo} />
 						</Box>
 						<Box
 							style={{
-								flexDirection: "column", // Use flexDirection: 'row' to make children (the two boxes) side by side
-								justifyContent: "space-between", // Align the two boxes to each end of the container
-								width: "90%", // Adjust the width as needed
+								flexDirection: "column",
+								justifyContent: "space-between",
+								width: "100%",
+								backgroundColor: "#6785b5",
+								borderRadius: 10,
+								marginTop: 10,
 							}}>
 							{/* First Box */}
-							<Box
-								style={{
-									flexDirection: "column",
-									alignItems: "center",
-									borderRadius: 10,
-									borderWidth: 0,
-									backgroundColor: "#6785b5",
-									paddingHorizontal: 20,
-									marginVertical: 10,
-								}}>
-								<Text
-									style={{
-										fontSize: 20,
-										paddingVertical: 10,
-										color: "white",
-									}}>
-									Height: {pokemonData["height"] / 10} m
-								</Text>
-								<Text
-									style={{
-										fontSize: 20,
-										paddingVertical: 10,
-										color: "white",
-									}}>
-									Weight: {pokemonData["weight"] / 10} kg
-								</Text>
-								<Text
-									style={{
-										fontSize: 20,
-										paddingVertical: 10,
-										color: "white",
-									}}>
-									Base Experience:{" "}
-									{pokemonData["base_experience"]}
-								</Text>
-								<Text
-									style={{
-										fontSize: 20,
-										paddingVertical: 10,
-										color: "white",
-									}}>
-									Abilities:{" "}
-									{pokemonData["abilities"] &&
-										pokemonData["abilities"]
-											.map(
-												(ability: any) =>
-													ability.ability.name
-											)
-											.join(", ")}
-								</Text>
-							</Box>
+							<PokemonBaseInfo {...pokemonData} />
 
 							{/* Second Box */}
-							<Box
-								style={{
-									flexDirection: "column",
-									alignItems: "center",
-									borderRadius: 10,
-									borderWidth: 0,
-									backgroundColor: "#6785b5",
-									paddingHorizontal: 20,
-									marginVertical: 10,
-								}}>
-								<Text
-									style={{
-										fontSize: 20,
-										paddingVertical: 10,
-										color: "white",
-									}}>
-									Base stats:
-								</Text>
-								{pokemonData["stats"] &&
-									pokemonData["stats"].map((stat: any) => (
-										<Text
-											style={{
-												fontSize: 20,
-												paddingVertical: 10,
-												color: "white",
-											}}
-											key={stat.stat.name}>
-											{stat.stat.name
-												.at(0)
-												?.toUpperCase() +
-												stat.stat.name.slice(1) +
-												": " +
-												stat.base_stat}
-										</Text>
-									))}
-							</Box>
+							<PokemonStats {...pokemonData} />
 						</Box>
 					</Box>
 				</LinearGradient>
