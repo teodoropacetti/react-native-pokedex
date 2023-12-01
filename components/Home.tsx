@@ -8,7 +8,7 @@ import { styles } from "../constants/Styles";
 
 const pokemonURL = "https://pokeapi.co/api/v2/pokemon?limit=25&offset=0";
 
-export default function Home() {
+const Home = () => {
 	const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 	try {
 		const fetchPokemons = async () => {
@@ -38,4 +38,8 @@ export default function Home() {
 			</SafeAreaView>
 		</GluestackUIProvider>
 	);
-}
+};
+
+const MemoizedHome = React.memo(Home);
+
+export default MemoizedHome;
