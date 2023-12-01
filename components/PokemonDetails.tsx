@@ -72,7 +72,8 @@ export default function PokemonDetails() {
 								justifyContent: "space-between",
 								width: "100%",
 								backgroundColor: "#6785b5",
-								borderRadius: 10,
+								borderTopEndRadius: 40,
+								borderTopStartRadius: 40,
 								marginTop: 10,
 							}}>
 							{/* First Box */}

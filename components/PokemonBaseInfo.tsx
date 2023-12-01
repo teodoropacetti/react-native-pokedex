@@ -7,9 +7,6 @@ export default function PokemonBaseInfo(pokemonData: string[]) {
 			style={{
 				flexDirection: "column",
 				alignItems: "center",
-				borderRadius: 10,
-				borderWidth: 0,
-				backgroundColor: "#6785b5",
 				paddingHorizontal: 20,
 				marginVertical: 10,
 			}}>
