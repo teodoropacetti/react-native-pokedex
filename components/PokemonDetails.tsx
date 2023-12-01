@@ -12,6 +12,11 @@ import usePokemonGradientColors from "../helpers/UsePokemonGradientColors";
 import PokemonBaseInfo from "./PokemonBaseInfo";
 import PokemonStats from "./PokemonStats";
 import PokemonFrontSprite from "./PokemonFrontSprite";
+import { Button } from "react-native";
+import { SceneMap, TabView } from "react-native-tab-view";
+import React from "react";
+import { Dimensions } from "react-native";
+import PokemonEvolutions from "./PokemonEvolutions";
 
 const pokemonImageBaseURL =
 	"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
@@ -42,10 +47,19 @@ export default function PokemonDetails() {
 
 	const gradientColors = usePokemonGradientColors(pokemonData);
 
+	const [pkmnInfo, setPkmnInfo] = useState(true);
+	const [pkmnStats, setPkmnStats] = useState(false);
+	const [pkmnEvo, setPkmnEvo] = useState(false);
+
 	return (
 		<GestureHandlerRootView style={{ flex: 1 }}>
 			<ScrollView>
-				<LinearGradient colors={gradientColors} style={{ flex: 1 }}>
+				<LinearGradient
+					colors={gradientColors}
+					style={{
+						flex: 1,
+						height: "auto",
+					}}>
 					<Box alignItems="center">
 						{/* Display pokemon's name with the first letter uppercased*/}
 						<Heading style={styles.nameStyle}>
@@ -75,12 +89,48 @@ export default function PokemonDetails() {
 								borderTopEndRadius: 40,
 								borderTopStartRadius: 40,
 								marginTop: 10,
+								alignItems: "center",
+								paddingTop: 10,
 							}}>
-							{/* First Box */}
-							<PokemonBaseInfo {...pokemonData} />
-
-							{/* Second Box */}
-							<PokemonStats {...pokemonData} />
+							<Box
+								style={{
+									flexDirection: "row",
+									justifyContent: "space-between",
+								}}>
+								<Button
+									title="Base info"
+									color={"white"}
+									onPress={() => {
+										setPkmnInfo(true),
+											setPkmnStats(false),
+											setPkmnEvo(false);
+									}}></Button>
+								<Button
+									title="Stats"
+									color={"white"}
+									onPress={() => {
+										setPkmnInfo(false),
+											setPkmnStats(true),
+											setPkmnEvo(false);
+									}}></Button>
+								<Button
+									title="Evolutions"
+									color={"white"}
+									onPress={() => {
+										setPkmnInfo(false),
+											setPkmnStats(false),
+											setPkmnEvo(true);
+									}}></Button>
+							</Box>
+							<Box style={{ paddingBottom: 20 }}>
+								{pkmnInfo && (
+									<PokemonBaseInfo {...pokemonData} />
+								)}
+								{pkmnStats && <PokemonStats {...pokemonData} />}
+								{pkmnEvo && (
+									<PokemonEvolutions {...pokemonData} />
+								)}
+							</Box>
 						</Box>
 					</Box>
 				</LinearGradient>
