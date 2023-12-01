@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { Box } from "@gluestack-ui/themed";
+import { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 
 const pokemonSpeciesURL = "https://pokeapi.co/api/v2/pokemon-species/";
@@ -8,16 +9,18 @@ export default function PokemonEvolutions(pokemonData: string[]) {
 	// Get the url of the evolution chain from the pokemon species
 	// Get the evolution chain from the url
 
-	console.log(pokemonData);
+	const [evolutionChain, setEvolutionChain] = useState<string[]>([]);
 
 	const fetchEvolutionChain = async () => {
 		try {
-			const res = await fetch(pokemonSpeciesURL + pokemonData["name"]);
+			const res = await fetch(
+				pokemonSpeciesURL + pokemonData["forms"].at(0)["name"]
+			);
 			const data = await res.json();
-			const evolutionChainURL = data["evolution-chain"]["url"];
+			const evolutionChainURL = data["evolution_chain"]["url"];
 			const res2 = await fetch(evolutionChainURL);
 			const data2 = await res2.json();
-			console.log(data2);
+			setEvolutionChain(data2);
 		} catch (error) {
 			console.error("Error fetching evolution chain:", error);
 		}
@@ -27,8 +30,13 @@ export default function PokemonEvolutions(pokemonData: string[]) {
 	}, []);
 
 	return (
-		<View>
-			<Text>Evolution</Text>
-		</View>
+		<Box>
+			<Text>Evolution Chain:</Text>
+			{evolutionChain ? (
+				<Text>{JSON.stringify(evolutionChain)}</Text>
+			) : (
+				<Text>Loading evolution chain...</Text>
+			)}
+		</Box>
 	);
 }
