@@ -8,11 +8,8 @@ export default function PokemonStats(pokemonData: string[]) {
 			style={{
 				flexDirection: "column",
 				alignItems: "center",
-				borderRadius: 10,
-				borderWidth: 0,
-				backgroundColor: "#6785b5",
 				paddingHorizontal: 20,
-				marginVertical: 10,
+				marginTop: 10,
 			}}>
 			<Text style={styles.textStyle}>Base stats:</Text>
 			{pokemonData["stats"] &&
